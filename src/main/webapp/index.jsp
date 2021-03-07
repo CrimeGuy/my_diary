@@ -39,7 +39,7 @@ layui.use('form', function(){
 		<div class="layui-form-item user-name">
 		    <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
 		    <div class="layui-input-block">
-		      <input type="text" name="userName" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+		      <input type="text" name="userMail" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 		    </div>
 	 	</div>
 	 	<div class="layui-form-item user-password">

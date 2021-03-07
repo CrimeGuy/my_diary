@@ -8,19 +8,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userId" column="user_id" />
 		<result property="userName" column="user_name" />
 		<result property="userPwd" column="user_pwd" />
+		<result property="userMail" column="user_mail" />
+		<result property="createTime" column="create_time" />
+		<result property="createUpdate" column="create_update" />
 	</resultMap>
 
 
-	<select id="findUserByUserName" parameterType="String"
+	<select id="findUserByUserMail" parameterType="String"
 		resultMap="userMap">
 		SELECT
 		USER_ID
 		,USER_NAME
 		,USER_PWD
+		,USER_MAIL
+		,CREATE_TIME
+		,UPDATE_TIME
 		FROM
 		USER
 		WHERE
-		USER_NAME = #{userName}
+		USER_MAIL = #{userMail}
 		AND
 		USER_PWD = #{userPwd}
 	</select>

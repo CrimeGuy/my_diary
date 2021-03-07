@@ -6,5 +6,5 @@ import com.liutao.bean.UserBean;
 
 public interface LoginMapper {
 	
-	public UserBean findUserByUserName(@Param("userName") String userName,@Param("userPwd") String userPwd);
+	public UserBean findUserByUserMail(@Param("userMail") String userMail,@Param("userPwd") String userPwd);
 }

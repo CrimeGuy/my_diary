@@ -11,8 +11,8 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired 
 	LoginMapper loginMapper;
-	public UserBean findUserByUserName(String userName,String userPwd) {
-		UserBean user = loginMapper.findUserByUserName(userName,userPwd);
+	public UserBean findUserByUserMail(String userMail,String userPwd) {
+		UserBean user = loginMapper.findUserByUserMail(userMail,userPwd);
 		return user;
 	}
 

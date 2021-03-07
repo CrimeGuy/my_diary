@@ -1,63 +1,74 @@
 package com.liutao.bean;
 
+import java.sql.Timestamp;
+
 public class UserBean {
 	private int userId;
 	private String userName;
 	private String userPwd;
+	private String userMail;
+	private Timestamp createTime;
+	private Timestamp updateTime;
 	
 	public UserBean() {
 		super();
 	}
 
-	/**
-	 * @return the userId
-	 */
 	public int getUserId() {
 		return userId;
 	}
 
-	/**
-	 * @param userId the userId to set
-	 */
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	/**
-	 * @return the userName
-	 */
 	public String getUserName() {
 		return userName;
 	}
 
-	/**
-	 * @param userName the userName to set
-	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	/**
-	 * @return the userPwd
-	 */
 	public String getUserPwd() {
 		return userPwd;
 	}
 
-	/**
-	 * @param userPwd the userPwd to set
-	 */
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	public String getUserMail() {
+		return userMail;
+	}
+
+	public void setUserMail(String userMail) {
+		this.userMail = userMail;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	@Override
 	public String toString() {
-		return "UserBean [userId=" + userId + ", userName=" + userName + ", userPwd=" + userPwd + "]";
+		return "UserBean [userId=" + userId + ", userName=" + userName + ", userPwd=" + userPwd + ", userMail="
+				+ userMail + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
+
+	
 	
 	
 }
