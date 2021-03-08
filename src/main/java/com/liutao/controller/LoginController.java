@@ -1,10 +1,13 @@
 package com.liutao.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.liutao.bean.UserBean;
 import com.liutao.service.LoginService;
@@ -21,19 +24,32 @@ public class LoginController {
 	@Autowired
 	UserService UserService;
 	
+	
 	@RequestMapping("/userLogin")
-	public String Login(UserBean user) throws IOException {
+	@ResponseBody
+	public Map<String,String> Login(UserBean user) throws IOException {
 		user = loginService.findUserByUserMail(user.getUserMail(),user.getUserPwd());
 		System.out.println(user);
+		Map<String,String> jsonMap = new HashMap<String, String>();
 		if(user != null) {
 			RedisUtil redisUtil = new RedisUtil();
 			Jedis jedis = redisUtil.getInstence();
 			jedis.set(user.getUserMail(), user.getUserMail());
-			return "/page/main_page.jsp";
+			
+			jsonMap.put("code","200");
+			jsonMap.put("status","success");
+			return jsonMap;
 		}else {
-			return "index.jsp";
+			jsonMap.put("code","400");
+			jsonMap.put("status","failed");
+			return jsonMap;
 		}
 		
+	}
+	
+	@RequestMapping("/mainPage")
+	public String MainPageInit() {
+		return "/page/main_page.jsp";
 	}
 	
 	@RequestMapping("/userRegiste")

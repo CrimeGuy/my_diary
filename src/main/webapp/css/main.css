@@ -24,6 +24,16 @@
 .login-btn{
 	width:100%;
 	text-align: center;
-	margin-top: 50px;
-	
+	margin-top: 40px;	
 }
+
+#login-error-msg{
+	text-align:center;
+	color:red;
+	font-size:5px;
+	height: 10px;
+}
+
+
+
+

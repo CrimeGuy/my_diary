@@ -3,35 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>login for mydiary</title>
 <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main.css?1.0.1">
 </head>
 <body>
-<script src="layui/layui.js">
+<script src="layui/layui.all.js">
 </script>
-<script type="text/javascript">
-/* layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-,form = layui.form;
-  
-  layer.msg('Hello World');
-});
- */
-layui.use('form', function(){
-	  var form = layui.form;
-	  //各种基于事件的操作，下面会有进一步介绍
-});
-</script>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/login.js"></script>
 
+<script type="text/javascript">
+/* $(document).ready(function(){
+	
+}); */
+
+</script>
 
 
 
 
 <div class="layui-main layui-bg-blue">
 	
-	<form action="login/userLogin.action" method="post" class="layui-form">
+	<form action="login/userLogin.action" id="loginForm" method="post" class="layui-form">
 		<div style="height: 20px"></div>
 		<div class="layui-form-item login-title">
 			welcome
@@ -39,17 +34,18 @@ layui.use('form', function(){
 		<div class="layui-form-item user-name">
 		    <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
 		    <div class="layui-input-block">
-		      <input type="text" name="userMail" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+		      <input type="text" id="userMail" name="userMail" lay-verify="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 		    </div>
 	 	</div>
 	 	<div class="layui-form-item user-password">
 		    <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i></label>
 		    <div class="layui-input-block">
-		      <input type="password" name="userPwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+		      <input type="password" id="userPwd" name="userPwd" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
 		    </div>
 	 	</div>
+	 	<div id="login-error-msg"></div>
 	 	<div class="login-btn">
-	 		<button type="lay-submit" class="layui-btn layui-btn-warm ">登陆</button>
+	 		<button type="button" id="loginBtn" class="layui-btn layui-btn-warm ">登陆</button>
 	 		<button type="button" class="layui-btn layui-btn-warm ">注册</button>
 	 	</div>
 	 	
