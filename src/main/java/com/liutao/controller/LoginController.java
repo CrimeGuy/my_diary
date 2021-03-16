@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.liutao.bean.UserBean;
 import com.liutao.service.LoginService;
@@ -38,18 +39,27 @@ public class LoginController {
 			
 			jsonMap.put("code","200");
 			jsonMap.put("status","success");
-			return jsonMap;
 		}else {
 			jsonMap.put("code","400");
 			jsonMap.put("status","failed");
-			return jsonMap;
 		}
+		
+		return jsonMap;
 		
 	}
 	
 	@RequestMapping("/mainPage")
-	public String MainPageInit() {
-		return "/page/main_page.jsp";
+	public ModelAndView MainPageInit() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("main_page.tiles");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/anotherPage")
+	public ModelAndView AnotherPageInit() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("another_page.tiles");
+		return modelAndView;
 	}
 	
 	@RequestMapping("/userRegiste")

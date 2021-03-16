@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 
 	<settings>
-		 <!-- 打印查询语句 -->
-        <setting name="logImpl" value="STDOUT_LOGGING" />
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
 </configuration>

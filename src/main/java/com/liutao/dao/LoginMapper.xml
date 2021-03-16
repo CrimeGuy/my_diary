@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userPwd" column="user_pwd" />
 		<result property="userMail" column="user_mail" />
 		<result property="createTime" column="create_time" />
-		<result property="createUpdate" column="create_update" />
+		<result property="updateTime" column="update_time" />
 	</resultMap>
 
 
@@ -28,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		USER_MAIL = #{userMail}
 		AND
-		USER_PWD = #{userPwd}
+		USER_PWD =
+		#{userPwd}
 	</select>
 
 	<!-- <insert id="addUserCar" parameterType="com.openlab.bean.Car"> insert 

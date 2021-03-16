@@ -3,13 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liutao.dao.UserMapper">
-	
-	<insert id="userRegiste" parameterType="com.liutao.bean.UserBean">
+
+	<insert id="userRegiste"
+		parameterType="com.liutao.bean.UserBean">
 		INSERT INTO USER(
-			USER_NAME
-			,USER_PWD)
+		USER_NAME
+		,USER_PWD)
 		VALUES(
-			#{user.userName},#{user.userPwd}
+		#{user.userName},#{user.userPwd}
 		)
 	</insert>
 </mapper>
