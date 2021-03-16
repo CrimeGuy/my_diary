@@ -1,7 +1,7 @@
 package com.liutao.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.liutao.bean.DayBean;
 import com.liutao.bean.UserBean;
+import com.liutao.common.DayBoxCommon;
 import com.liutao.service.LoginService;
 import com.liutao.service.UserService;
 import com.liutao.util.RedisUtil;
@@ -28,15 +30,25 @@ public class LoginController {
 	
 	@RequestMapping("/userLogin")
 	@ResponseBody
-	public Map<String,String> Login(UserBean user) throws IOException {
+	public Map<String,String> Login(UserBean user) throws Exception {
 		user = loginService.findUserByUserMail(user.getUserMail(),user.getUserPwd());
 		System.out.println(user);
 		Map<String,String> jsonMap = new HashMap<String, String>();
 		if(user != null) {
+			// 账号密码正确 存redis
 			RedisUtil redisUtil = new RedisUtil();
 			Jedis jedis = redisUtil.getInstence();
-			jedis.set(user.getUserMail(), user.getUserMail());
+			jedis.set(user.getUserMail(), user.getUserId() + "");
+			// 判断该用户是否生成当月day_box
+				//未生成
+			@SuppressWarnings("unchecked")
+			List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId());
+			Boolean isSuccess = loginService.createDayBox(dayBoxDataList);
 			
+			if(!isSuccess) {
+				jsonMap.put("code","500");
+				jsonMap.put("status","sysError");
+			}
 			jsonMap.put("code","200");
 			jsonMap.put("status","success");
 		}else {
@@ -44,8 +56,7 @@ public class LoginController {
 			jsonMap.put("status","failed");
 		}
 		
-		return jsonMap;
-		
+		return jsonMap;	
 	}
 	
 	@RequestMapping("/mainPage")
