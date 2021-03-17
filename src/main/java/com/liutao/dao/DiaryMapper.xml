@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liutao.dao.DiaryMapper">
+
+	<resultMap type="com.liutao.bean.DayBean" id="diaryMap">
+		<result property="dayId" column="day_id" />
+		<result property="year" column="year" />
+		<result property="week" column="week" />
+		<result property="month" column="month" />
+		<result property="dayText" column="day_text" />
+		<result property="dayImage" column="day_image" />
+		<result property="dayNo" column="day_no" />
+		<result property="userId" column="user_id" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+
+	<select id="selectDay" parameterType="java.lang.Integer" resultMap="diaryMap">
+		SELECT
+			DAY_ID
+			,YEAR
+			,WEEK
+			,DAY_TEXT
+			,DAY_IMAGE
+			,DAY_NO
+			,USER_ID
+			,MONTH
+			,CREATE_TIME
+			,UPDATE_TIME
+		FROM 
+			DAY
+		WHERE
+			USER_ID = #{userId}
+		AND 
+			YEAR = #{year}
+		AND 
+			MONTH = #{month}
+	</select>
+	
+</mapper>

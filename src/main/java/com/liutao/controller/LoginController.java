@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,25 +32,33 @@ public class LoginController {
 	
 	@RequestMapping("/userLogin")
 	@ResponseBody
-	public Map<String,String> Login(UserBean user) throws Exception {
+	public Map<String,String> Login(UserBean user,HttpSession session) throws Exception {
 		user = loginService.findUserByUserMail(user.getUserMail(),user.getUserPwd());
 		System.out.println(user);
 		Map<String,String> jsonMap = new HashMap<String, String>();
 		if(user != null) {
+			// 存入session
+			session.setAttribute("userInfo", user);
+			
 			// 账号密码正确 存redis
 			RedisUtil redisUtil = new RedisUtil();
 			Jedis jedis = redisUtil.getInstence();
 			jedis.set(user.getUserMail(), user.getUserId() + "");
 			// 判断该用户是否生成当月day_box
+			Map<String , Integer> dayMsgMap = DayBoxCommon.getDayMsg();
+			Boolean isHasBoxData = loginService.judgeBoxExist(dayMsgMap,user.getUserId());
+			System.out.println("box是否生成" + isHasBoxData);
+			if(!isHasBoxData) {
+				System.out.println("box尚未生成");
 				//未生成
-			@SuppressWarnings("unchecked")
-			List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId());
-			Boolean isSuccess = loginService.createDayBox(dayBoxDataList);
-			
-			if(!isSuccess) {
-				jsonMap.put("code","500");
-				jsonMap.put("status","sysError");
+				List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId());
+				Boolean isSuccess = loginService.createDayBox(dayBoxDataList);
+				if(!isSuccess) {
+					jsonMap.put("code","500");
+					jsonMap.put("status","sysError");
+				}
 			}
+			
 			jsonMap.put("code","200");
 			jsonMap.put("status","success");
 		}else {
@@ -59,12 +69,7 @@ public class LoginController {
 		return jsonMap;	
 	}
 	
-	@RequestMapping("/mainPage")
-	public ModelAndView MainPageInit() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("main_page.tiles");
-		return modelAndView;
-	}
+	
 	
 	@RequestMapping("/anotherPage")
 	public ModelAndView AnotherPageInit() {

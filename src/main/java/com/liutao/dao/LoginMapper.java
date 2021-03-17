@@ -12,4 +12,6 @@ public interface LoginMapper {
 	public UserBean findUserByUserMail(@Param("userMail") String userMail,@Param("userPwd") String userPwd);
 
 	public int insertDayBox(List<DayBean> dayBoxDataList);
+
+	public int countDayBox(@Param("year") Integer year, @Param("month")Integer month, @Param("userId")int userId);
 }

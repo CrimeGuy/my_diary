@@ -1,6 +1,7 @@
 package com.liutao.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,14 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return false;
 	}
-
+	@Override
+	public Boolean judgeBoxExist(Map<String, Integer> dayMsgMap, int userId) {
+		int countDayBox = loginMapper.countDayBox(dayMsgMap.get("year"),dayMsgMap.get("month"),userId);
+		if(countDayBox > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }

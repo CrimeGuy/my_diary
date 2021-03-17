@@ -12,7 +12,7 @@
 	<script src="assets/layui/layui.js">
 </script>
 	<script src="assets/js/jquery-1.11.1.js"></script>
-	<script src="assets/js/login.js?v1.0.2"></script>
+	<script src="assets/js/login.js?v1.0.4"></script>
 
 	<script type="text/javascript">
 /* $(document).ready(function(){

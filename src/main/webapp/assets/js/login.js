@@ -12,7 +12,7 @@ $(document).ready(function() {
 			dataType:"json",
 			success:function(result){
 				if('200' == result.code){
-					window.location.href="login/mainPage.action";
+					window.location.href="diary/diaryPageInit.action?mail=" + $("#userMail").val();
 				}else{
 					$('#login-error-msg').text("账号或密码错误！");
 				}

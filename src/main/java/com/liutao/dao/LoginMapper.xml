@@ -28,22 +28,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		USER_MAIL = #{userMail}
 		AND
-		USER_PWD =
-		#{userPwd}
+		USER_PWD = #{userPwd}
 	</select>
 
 	<insert id="insertDayBox" parameterType="java.util.List" >
 		INSERT INTO DAY
-			(YEAR,WEEK,DAY_NO,USER_ID)
+			(YEAR,WEEK,MONTH,DAY_NO,USER_ID)
 		VALUES
 			<foreach collection ="list" item="dayBoxDataItem" index= "index" separator =",">
 				(
 				#{dayBoxDataItem.year}
 				,#{dayBoxDataItem.week}
+				,#{dayBoxDataItem.month}
 				,#{dayBoxDataItem.dayNo}
-				,#{dayBoxDataItem.dayId}
+				,#{dayBoxDataItem.userId}
 				)
 			</foreach>
 	</insert>
+	
+	<select id="countDayBox" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT 
+			COUNT(*)
+		FROM
+			DAY
+		WHERE
+			YEAR = ${year} AND MONTH = ${month} AND USER_ID = ${userId}
+	</select>
+	
 	
 </mapper>
