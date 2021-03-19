@@ -6,19 +6,65 @@ $(document).ready(function() {
 		success:function(data){
 			initDayData(data);
 		}
-	});		
+	});	
+	
+	
+	$('#next-month-go').click(function(){
+		var monthNo = parseInt($('#monthNo').val()) + 1;
+		var yearNo = parseInt($('#yearNo').val());
+		if(monthNo == 13){
+			monthNo = 1;
+			yearNo = yearNo + 1;
+		}
+		$.ajax({
+			type: "post",
+			url:"../diary/diaryPageData.action?next=true&monthNo=" + monthNo + "&yearNo=" + yearNo,
+			dataType:"json",
+			success:function(data){
+			initDayData(data);
+		}
+		});
+
+	});
+	$('#pre-month-go').click(function(){
+		var monthNo = parseInt($('#monthNo').val()) - 1;
+		var yearNo = parseInt($('#yearNo').val());
+		if(monthNo == 0){
+			monthNo = 12;
+			yearNo = yearNo - 1;
+		}
+		$.ajax({
+			type: "post",
+			url:"../diary/diaryPageData.action?next=false&monthNo=" + monthNo + "&yearNo=" + yearNo,
+			dataType:"json",
+			success:function(data){
+			initDayData(data);
+		}
+		});
+
+	});
+	
 });
 
 function initDayData(data){
+	for(var i=1;i<=37;i++){
+		$('#day-' + i).css('background-color','transparent');
+		$('#day-' + i).css('border','1px solid transparent');
+		$('#day-'+ i + ' .day-mid-div').text("");
+		$('#day-'+ i + ' .day-bom-div').text("");
+	}
+
 	var firstDayWeek = data[0].week;
-	$('#diary-month-center').text(data[0].month + '月');
+	$('#monthNo').val(data[0].month);
+	$('#yearNo').val(data[0].year);
+	$('#diary-month-center').text(data[0].year + '年' + data[0].month + '月');
 	var dayNo = "";
 	for(var i = 0;i < data.length;i++){
 		dayNo = (firstDayWeek + i);
-		//alert($('#day-'+ dayNo + ' .day-mid-div'));
 		$('#day-'+ dayNo + ' .day-mid-div').text(data[i].dayNo);
-		//$('#day-' + dayNo).css('display','block');
-		$('#day-' + dayNo).css('background-color','#FFE4E1');
+		$('#day-'+ dayNo + ' .day-bom-div').text(data[i].festival);
+		$('#day-' + dayNo).css('background-color','#4169E1');
 		$('#day-' + dayNo).css('border','1px solid #000');
 	}
+	
 }

@@ -6,7 +6,7 @@
 <ul class="layui-nav layui-nav-tree menu" lay-filter="test">
 <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
   <li class="layui-nav-item">
-    <a href="../login/anotherPage.action">日记</a>
+    <a href="../login/diaryPageInit.action">日记</a>
     <!-- <dl class="layui-nav-child">
       <dd><a href="javascript:;">选项1</a></dd>
       <dd><a href="javascript:;">选项2</a></dd>

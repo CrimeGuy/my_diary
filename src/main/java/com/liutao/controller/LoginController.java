@@ -45,13 +45,13 @@ public class LoginController {
 			Jedis jedis = redisUtil.getInstence();
 			jedis.set(user.getUserMail(), user.getUserId() + "");
 			// 判断该用户是否生成当月day_box
-			Map<String , Integer> dayMsgMap = DayBoxCommon.getDayMsg();
+			Map<String , Integer> dayMsgMap = DayBoxCommon.getDayMsg(null,null);
 			Boolean isHasBoxData = loginService.judgeBoxExist(dayMsgMap,user.getUserId());
 			System.out.println("box是否生成" + isHasBoxData);
 			if(!isHasBoxData) {
 				System.out.println("box尚未生成");
 				//未生成
-				List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId());
+				List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId(),null,null);
 				Boolean isSuccess = loginService.createDayBox(dayBoxDataList);
 				if(!isSuccess) {
 					jsonMap.put("code","500");

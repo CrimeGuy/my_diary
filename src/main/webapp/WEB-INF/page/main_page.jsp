@@ -2,14 +2,20 @@
 	pageEncoding="UTF-8"%>
 
 <div class="diary-main ">
+	<input type="hidden" value="" id="monthNo"/>
+	<input type="hidden" value="" id="yearNo"/>
+
 	<div class="diary-title-div">
 		<div class="left-title-div">diary</div>
 		<div class="right-title-div"></div>
 	</div>
 	<div class="diary-month-div">
-		<div class="diary-month-left"></div>
+		<div class="diary-month-left">
+		</div>
 		<div class="diary-month-center" id="diary-month-center">几月</div>
-		<div class="diary-month-right"></div>
+		<div class="diary-month-right">
+			<div class="next-month-btn"></div>
+		</div>
 	</div>
 	<div class="diary-week-div">
 	<div id="blank-div" class="blank-div"></div>
@@ -124,7 +130,11 @@
 	<div class="diary-day-div-row" id="diary-day-div-row-3">
 		<div class="day-blank-div">
 			<div class="day-top-div"></div>
-			<div class="day-mid-div"></div>
+			<div class="day-mid-div">
+			<button type="button" id="pre-month-go" class="layui-btn layui-btn-radius layui-btn-warm">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;≪≪上个月≪≪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</button>
+			</div>
 			<div class="day-bom-div"></div>
 		</div>
 		<div id="day-15" class="day-div">
@@ -164,7 +174,11 @@
 		</div>
 		<div class="day-blank-div">
 			<div class="day-top-div"></div>
-			<div class="day-mid-div"></div>
+			<div class="day-mid-div">
+				<button type="button" id="next-month-go" class="layui-btn layui-btn-radius layui-btn-warm">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;≫≫下个月≫≫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</button>
+			</div>
 			<div class="day-bom-div"></div>
 		</div>
 	</div>

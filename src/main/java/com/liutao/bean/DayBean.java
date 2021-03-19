@@ -11,6 +11,7 @@ public class DayBean {
 	private String dayText;
 	private String dayImage;
 	private int dayNo;
+	private String festival;
 	private int userId;
 	private Timestamp createTime;
 	private Timestamp updateTime;
@@ -22,12 +23,13 @@ public class DayBean {
 	
 	
 
-	public DayBean(int year, int week,int month, int dayNo, int userId) {
+	public DayBean(int year, int week,int month, int dayNo,String festival, int userId) {
 		super();
 		this.year = year;
 		this.week = week;
 		this.month = month;
 		this.dayNo = dayNo;
+		this.festival = festival;
 		this.userId = userId;
 	}
 
@@ -95,6 +97,19 @@ public class DayBean {
 		this.dayNo = dayNo;
 	}
 
+	
+	public String getFestival() {
+		return festival;
+	}
+
+
+
+	public void setFestival(String festival) {
+		this.festival = festival;
+	}
+
+
+
 	public int getUserId() {
 		return userId;
 	}
@@ -124,9 +139,8 @@ public class DayBean {
 	@Override
 	public String toString() {
 		return "DayBean [dayId=" + dayId + ", year=" + year + ", week=" + week + ", month=" + month + ", dayText="
-				+ dayText + ", dayImage=" + dayImage + ", dayNo=" + dayNo + ", userId=" + userId + ", createTime="
-				+ createTime + ", updateTime=" + updateTime + "]";
+				+ dayText + ", dayImage=" + dayImage + ", dayNo=" + dayNo + ", festival=" + festival + ", userId="
+				+ userId + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
 	}
 
-	
 }

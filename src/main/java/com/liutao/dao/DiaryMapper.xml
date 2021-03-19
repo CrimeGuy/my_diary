@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="dayText" column="day_text" />
 		<result property="dayImage" column="day_image" />
 		<result property="dayNo" column="day_no" />
+		<result property="festival" column="festival" />
 		<result property="userId" column="user_id" />
 		<result property="createTime" column="create_time" />
 		<result property="updateTime" column="update_time" />
@@ -28,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,DAY_NO
 			,USER_ID
 			,MONTH
+			,FESTIVAL
 			,CREATE_TIME
 			,UPDATE_TIME
 		FROM 

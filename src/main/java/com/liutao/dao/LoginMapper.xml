@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertDayBox" parameterType="java.util.List" >
 		INSERT INTO DAY
-			(YEAR,WEEK,MONTH,DAY_NO,USER_ID)
+			(YEAR,WEEK,MONTH,DAY_NO,FESTIVAL,USER_ID)
 		VALUES
 			<foreach collection ="list" item="dayBoxDataItem" index= "index" separator =",">
 				(
@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				,#{dayBoxDataItem.week}
 				,#{dayBoxDataItem.month}
 				,#{dayBoxDataItem.dayNo}
+				,#{dayBoxDataItem.festival}
 				,#{dayBoxDataItem.userId}
 				)
 			</foreach>

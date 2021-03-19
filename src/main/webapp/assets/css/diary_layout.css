@@ -62,21 +62,6 @@
 	float: left;
 }
 
-/* .day-div{
-	height: 95px;
-	width: 10%;
-	margin-left: 3px;
-	margin-top: 5px;
-	float: left;
-	background-color: #FFE4E1;
-	border-radius:15px;
-	border: 1px solid #000;
-	display: none;
-}  */
-
-/* .day-frist{
-	float: right;
-} */
 
  .day-div{
 	height: 95px;
@@ -87,11 +72,13 @@
 	background-color:transparent;
 	border-radius:15px;
 	border: 1px solid transparent;
+	
 } 
 
 
 .day-div:hover{
-	transform: scale(1.5);
+	/* transform: scale(1.5); */
+	cursor:pointer;
 }
 
 .diary-day-div-row{
@@ -112,15 +99,18 @@
 }
 
 .day-mid-div{
-	height: 65px;
+	height: 40px;
 	width: auto;
 	text-align: center;
 	font-size: 30px;
 	margin-top: 15px
 }
 .day-bom-div{
-	height: 15px;
+	height: 20px;
 	width: auto;
+	text-align: center;
+	margin-bottom: 5px;
+	color: #DAA520;
 }
 
 
