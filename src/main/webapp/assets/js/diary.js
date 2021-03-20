@@ -47,6 +47,21 @@ $(document).ready(function() {
 });
 
 function initDayData(data){
+	
+	varscreenHeight=document.documentElement.clientHeight;
+
+	varscreenWidth=document.documentElement.clientWidth;
+	
+	$('.diary-main').css('height',varscreenHeight - 75 + 'px');
+	$('#layout-menu').css('height',varscreenHeight - 75 + 'px');
+	$('.menu').css('height',varscreenHeight - 50 + 'px');
+//	if(103 < varscreenHeight * 0.1){
+	$('.diary-day-div-row').css('height',varscreenHeight * 0.12 + 'px');
+//	}
+	$('.day-blank-div').css('height',varscreenHeight * 0.12 + 'px');
+	$('.day-div').css('height',varscreenHeight * 0.12 + 'px');
+	
+	
 	for(var i=1;i<=37;i++){
 		$('#day-' + i).css('background-color','transparent');
 		$('#day-' + i).css('border','1px solid transparent');
