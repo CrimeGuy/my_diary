@@ -55,11 +55,11 @@ function initDayData(data){
 	$('.diary-main').css('height',varscreenHeight - 75 + 'px');
 	$('#layout-menu').css('height',varscreenHeight - 75 + 'px');
 	$('.menu').css('height',varscreenHeight - 50 + 'px');
-//	if(103 < varscreenHeight * 0.1){
+    // if(103 < varscreenHeight * 0.1){
 	$('.diary-day-div-row').css('height',varscreenHeight * 0.12 + 'px');
-//	}
-	$('.day-blank-div').css('height',varscreenHeight * 0.12 + 'px');
-	$('.day-div').css('height',varscreenHeight * 0.12 + 'px');
+	// }
+	$('.day-blank-div').css('height',(varscreenHeight * 0.12) - 15 + 'px');
+	$('.day-div').css('height',(varscreenHeight * 0.12) - 15 + 'px');
 	
 	
 	for(var i=1;i<=37;i++){
