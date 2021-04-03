@@ -26,65 +26,51 @@ import redis.clients.jedis.Jedis;
 public class LoginController {
 	@Autowired
 	LoginService loginService;
-	@Autowired
-	UserService UserService;
-	
-	
+
 	@RequestMapping("/userLogin")
 	@ResponseBody
-	public Map<String,String> Login(UserBean user,HttpSession session) throws Exception {
-		user = loginService.findUserByUserMail(user.getUserMail(),user.getUserPwd());
+	public Map<String, String> Login(UserBean user, HttpSession session) throws Exception {
+		user = loginService.findUserByUserMail(user.getUserMail(), user.getUserPwd());
 		System.out.println(user);
-		Map<String,String> jsonMap = new HashMap<String, String>();
-		if(user != null) {
+		Map<String, String> jsonMap = new HashMap<String, String>();
+		if (user != null) {
 			// 存入session
 			session.setAttribute("userInfo", user);
-			
+
 			// 账号密码正确 存redis
 			RedisUtil redisUtil = new RedisUtil();
 			Jedis jedis = redisUtil.getInstence();
 			jedis.set(user.getUserMail(), user.getUserId() + "");
 			// 判断该用户是否生成当月day_box
-			Map<String , Integer> dayMsgMap = DayBoxCommon.getDayMsg(null,null);
-			Boolean isHasBoxData = loginService.judgeBoxExist(dayMsgMap,user.getUserId());
+			Map<String, Integer> dayMsgMap = DayBoxCommon.getDayMsg(null, null);
+			Boolean isHasBoxData = loginService.judgeBoxExist(dayMsgMap, user.getUserId());
 			System.out.println("box是否生成" + isHasBoxData);
-			if(!isHasBoxData) {
+			if (!isHasBoxData) {
 				System.out.println("box尚未生成");
-				//未生成
-				List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId(),null,null);
+				// 未生成
+				List<DayBean> dayBoxDataList = DayBoxCommon.DayBoxDataCreate(user.getUserId(), null, null);
 				Boolean isSuccess = loginService.createDayBox(dayBoxDataList);
-				if(!isSuccess) {
-					jsonMap.put("code","500");
-					jsonMap.put("status","sysError");
+				if (!isSuccess) {
+					jsonMap.put("code", "500");
+					jsonMap.put("status", "sysError");
 				}
 			}
-			
-			jsonMap.put("code","200");
-			jsonMap.put("status","success");
-		}else {
-			jsonMap.put("code","400");
-			jsonMap.put("status","failed");
+
+			jsonMap.put("code", "200");
+			jsonMap.put("status", "success");
+		} else {
+			jsonMap.put("code", "400");
+			jsonMap.put("status", "failed");
 		}
-		
-		return jsonMap;	
+
+		return jsonMap;
 	}
-	
-	
-	
+
 	@RequestMapping("/anotherPage")
 	public ModelAndView AnotherPageInit() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("another_page.tiles");
 		return modelAndView;
 	}
-	
-	@RequestMapping("/userRegiste")
-	public String registe() {
-		UserBean user = new UserBean();
-		user.setUserName("����");
-		user.setUserPwd("123456");
-		System.out.println(UserService.userRegist(user) + "");
-		return "";
-	}
-	
+
 }

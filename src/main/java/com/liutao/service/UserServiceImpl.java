@@ -21,4 +21,13 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public Boolean judgeMailExsit(String registeUserMail) {
+		int count = userMapper.judgeMailExsit(registeUserMail);
+		if(count > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

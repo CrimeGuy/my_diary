@@ -6,4 +6,6 @@ import com.liutao.bean.UserBean;
 
 public interface UserMapper {
 	public int userRegiste(@Param("user") UserBean user);
+	
+	public int judgeMailExsit(@Param("registeUserMail") String registeUserMail);
 }

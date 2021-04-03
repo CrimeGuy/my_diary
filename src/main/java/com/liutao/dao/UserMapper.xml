@@ -8,9 +8,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="com.liutao.bean.UserBean">
 		INSERT INTO USER(
 		USER_NAME
-		,USER_PWD)
+		,USER_PWD
+		,USER_MAIL
+		)
 		VALUES(
-		#{user.userName},#{user.userPwd}
+		#{user.userName}
+		,#{user.userPwd}
+		,#{user.userMail}
 		)
 	</insert>
+	
+	<select id="judgeMailExsit" parameterType="String" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM 
+			USER
+		WHERE 
+			USER_MAIL = #{registeUserMail}
+	</select>
 </mapper>

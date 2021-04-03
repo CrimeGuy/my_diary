@@ -61,7 +61,6 @@ function initDayData(data){
 	$('.day-blank-div').css('height',(varscreenHeight * 0.12) - 15 + 'px');
 	$('.day-div').css('height',(varscreenHeight * 0.12) - 15 + 'px');
 	
-	
 	for(var i=1;i<=37;i++){
 		$('#day-' + i).css('background-color','transparent');
 		$('#day-' + i).css('border','1px solid transparent');

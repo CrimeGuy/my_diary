@@ -36,6 +36,12 @@
 	height: 10px;
 }
 
+.errorMsg{
+	color: red;
+	font-size: 5px;
+	height: 10px;
+}
+
 .header{
 	margin-top: 0%;
 	width: 100%;
