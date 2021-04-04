@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../assets/layui/layui.all.js"></script>
 		<script src="../assets/js/jquery-1.11.1.js"></script>
-		<script src="../assets/js/diary.js?v1.0.5"></script>
+		<script src="../assets/js/diary.js?v1.0.6"></script>
 		<link rel="stylesheet" type="text/css" href="../assets/layui/css/layui.css">
 		<link rel="stylesheet" type="text/css" href="../assets/css/main.css?1.0.4">
 		<link rel="stylesheet" type="text/css" href="../assets/css/diary_layout.css?ver=5">

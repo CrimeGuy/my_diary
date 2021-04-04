@@ -80,7 +80,7 @@ public class DiaryController {
 		return userDayList;
 	}
 	
-	
+	// public 
 	
 	
 	
