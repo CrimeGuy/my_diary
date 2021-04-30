@@ -47,7 +47,6 @@ $(document).ready(function () {
 });
 
 function initDayData(data) {
-
 	varscreenHeight = document.documentElement.clientHeight;
 
 	varscreenWidth = document.documentElement.clientWidth;
@@ -66,6 +65,8 @@ function initDayData(data) {
 		$('#day-' + i).css('border', '1px solid transparent');
 		$('#day-' + i + ' .day-mid-div').text("");
 		$('#day-' + i + ' .day-bom-div').text("");
+		// 清除全部  day-div-display
+		$('#day-' + i).removeClass("day-div-display");
 	}
 
 	var firstDayWeek = data[0].week;
@@ -79,6 +80,7 @@ function initDayData(data) {
 		$('#day-' + dayNo + ' .day-bom-div').text(data[i].festival);
 		$('#day-' + dayNo).css('background-color', '#4169E1');
 		$('#day-' + dayNo).css('border', '1px solid #000');
+		$('#day-' + dayNo).addClass('day-div-display');
 
 		// 绑定点击事件
 		$('#day-' + dayNo).click(function () {
@@ -92,7 +94,7 @@ function initDayData(data) {
 				url: "../diary/diaryPageData.action",
 				dataType: "json",
 				success: function (data) {
-					initDayData(data);
+					// initDayData(data);
 				}
 			});
 		});
